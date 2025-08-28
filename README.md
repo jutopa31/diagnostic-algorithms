@@ -1,17 +1,50 @@
-# Algoritmos Diagnósticos
+# 🏥 Diagnostic Algorithms - Medical Scales with AI
 
-Una aplicación web moderna para algoritmos diagnósticos y escalas clínicas con inteligencia artificial integrada.
+> **Aplicación web avanzada para algoritmos diagnósticos médicos y escalas clínicas con sistema de inteligencia artificial ultra-inteligente**
 
-## 🩺 Características
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Vercel-black?style=for-the-badge)](https://diagnostic-algorithms.vercel.app)
+[![GitHub](https://img.shields.io/badge/📁%20GitHub-Repository-blue?style=for-the-badge)](https://github.com/jutopa31/diagnostic-algorithms)
+[![Build](https://img.shields.io/badge/✅%20Build-Passing-green?style=for-the-badge)](#)
 
-- **30+ Escalas Médicas**: NIHSS, Glasgow, UPDRS, BDI-II, NPI, y muchas más
-- **Algoritmos Diagnósticos**: DSM-5, criterios de Parkinson, McDonald 2024
-- **IA Integrada**: Sugerencias automáticas de escalas basadas en texto clínico
-- **Interfaz Moderna**: Diseño responsivo con React y Tailwind CSS
-- **Cálculos Automáticos**: Interpretación automática de resultados
-- **Export de Datos**: Copia fácil de resultados al portapapeles
+## ✨ **Características Revolucionarias**
 
-## 🚀 Inicio Rápido
+🤖 **IA Ultra-Inteligente**: Sistema avanzado de predicción que detecta automáticamente qué escalas usar
+- **Detección de variaciones**: "deprimido/deprimida", "ansioso/ansiosa"
+- **Reconocimiento por especialidades**: "psiquiatría", "neurología", "cardiología"
+- **Stemming inteligente**: "suicidio", "alucinaciones", "confusión"
+- **+50 patrones médicos** con análisis contextual
+
+📊 **30+ Escalas Médicas Completas**: Implementación profesional con interpretación clínica automática
+
+🎯 **Especialidades Cubiertas**:
+- **Neurología**: NIHSS, Glasgow, mRS, ASPECTS, ICH Score, Hunt-Hess
+- **Psiquiatría**: DSM-5, Beck Depression, NPI  
+- **Parkinson**: UPDRS I-IV, MDS 2015, Hoehn & Yahr, Ashworth
+- **Cardiología**: CHA2DS2-VASc, HAS-BLED
+- **Cognición**: MMSE, MoCA
+- **Esclerosis Múltiple**: McDonald 2024, EDSS
+- **Epilepsia**: Engel  
+- **Cefalea**: MIDAS, HIT-6
+
+⚡ **Sistema Auto-Actualizable**: Se actualiza automáticamente al agregar nuevas escalas
+
+## 🌐 **Demo en Vivo**
+
+**🚀 URL**: [https://diagnostic-algorithms.vercel.app](https://diagnostic-algorithms.vercel.app)
+
+### 🧪 **Prueba la IA Inteligente:**
+1. **Escribe "deprimida"** → Ve escalas de depresión aparecer automáticamente
+2. **Escribe "psiquiatría"** → Ve todas las escalas psiquiátricas  
+3. **Escribe "temblor"** → Ve escalas de Parkinson
+4. **Usa dropdown "Tests IA"** → 9 casos de prueba diferentes
+5. **Abre DevTools (F12)** → Ve logging detallado del análisis IA
+
+### 📱 **Funciona en:**
+- 💻 **Desktop**: Chrome, Firefox, Safari, Edge
+- 📱 **Mobile**: iOS Safari, Chrome Mobile, Android
+- ⚡ **PWA**: Instalable como app nativa
+
+## 🚀 Desarrollo Local
 
 ### Instalación
 
