@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Copy, Plus, Calculator, Stethoscope, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { Scale } from './types';
 import AIBadgeSystem from './AIBadgeSystem';
-import { useAITextAnalysis } from './aiTextAnalyzer';
+import { useEnhancedAIAnalysis } from './enhancedAIAnalyzer';
 
 interface DiagnosticAlgorithmContentProps {
   notes: string;
@@ -25,12 +25,17 @@ const DiagnosticAlgorithmContent: React.FC<DiagnosticAlgorithmContentProps> = ({
     '🤖 Sugerencias IA': true // Siempre expandido
   });
 
-  // Análisis de IA del texto de notas
-  const aiAnalysis = useAITextAnalysis(notes, 2000);
+  // Análisis de IA del texto de notas - Sistema mejorado (respuesta inmediata)
+  const aiAnalysis = useEnhancedAIAnalysis(notes, 500);
   
   // Debug: log del análisis
   console.log('🔍 DiagnosticAlgorithm - Current notes:', notes);
   console.log('🤖 DiagnosticAlgorithm - AI Analysis:', aiAnalysis);
+  
+  // Debug visual para verificar que funciona
+  if (aiAnalysis.suggestions.length > 0) {
+    console.log('✅ SUGERENCIAS DETECTADAS:', aiAnalysis.suggestions.map(s => s.scaleId));
+  }
 
   const toggleCategory = (category: string) => {
     setExpandedCategories(prev => ({
@@ -88,7 +93,7 @@ const DiagnosticAlgorithmContent: React.FC<DiagnosticAlgorithmContentProps> = ({
           Escalas y Algoritmos
         </h2>
         <div className="flex items-center justify-between mt-1">
-          <p className="text-blue-100 text-sm">Herramientas de evaluación neurológica</p>
+          <p className="text-blue-100 text-sm">Herramientas de evaluación neurológica • IA Mejorada ⚡</p>
           {/* Indicador de IA */}
           <div className="flex items-center space-x-2">
             {aiAnalysis.suggestions.length > 0 && (
@@ -112,11 +117,15 @@ const DiagnosticAlgorithmContent: React.FC<DiagnosticAlgorithmContentProps> = ({
             return (
               <div 
                 key={category} 
-                className={`border rounded-lg overflow-hidden ${
+                className={`border rounded-lg overflow-hidden transition-all duration-300 ${
                   isAISuggestions 
-                    ? 'border-purple-300 bg-gradient-to-r from-purple-50 to-blue-50 shadow-lg' 
+                    ? 'border-purple-400 bg-gradient-to-r from-purple-50 to-blue-50 shadow-xl scale-105 ring-2 ring-purple-200' 
                     : 'border-gray-200'
                 }`}
+                style={isAISuggestions ? { 
+                  transform: 'scale(1.02)', 
+                  boxShadow: '0 10px 25px rgba(147, 51, 234, 0.2)' 
+                } : {}}
               >
                 {/* Category Header */}
                 <button
@@ -240,16 +249,76 @@ Vigil, orientado en tiempo persona y espacio, lenguaje conservado. Repite, nomin
                 <Plus className="h-4 w-4" />
                 <span>EF normal</span>
               </button>
-              <button
-                onClick={() => {
-                  const testText = `Paciente con temblor en reposo y rigidez muscular. Presenta hemiparesia derecha y disartria severa.`;
-                  setNotes(testText);
-                }}
-                className="flex items-center space-x-2 px-3 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700"
-              >
-                <Plus className="h-4 w-4" />
-                <span>Test IA</span>
-              </button>
+              {/* Tests dinámicos de IA */}
+              <div className="relative group">
+                <button className="flex items-center space-x-2 px-3 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                  <Plus className="h-4 w-4" />
+                  <span>Tests IA</span>
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+                
+                {/* Dropdown menu */}
+                <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                  <div className="p-2 space-y-1">
+                    <button
+                      onClick={() => setNotes('Paciente deprimido con tristeza persistente y pérdida de interés')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      🧠 Test Depresión
+                    </button>
+                    <button
+                      onClick={() => setNotes('Presenta temblor de reposo y rigidez en extremidades')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      🤲 Test Parkinson
+                    </button>
+                    <button
+                      onClick={() => setNotes('Hemiparesia izquierda súbita con disartria severa')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      🧬 Test Stroke
+                    </button>
+                    <button
+                      onClick={() => setNotes('Deterioro de memoria y desorientación temporal')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      🧩 Test Cognitivo
+                    </button>
+                    <button
+                      onClick={() => setNotes('Cefalea recurrente que interfiere con el trabajo')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      💆 Test Migraña
+                    </button>
+                    <button
+                      onClick={() => setNotes('Paciente con agitación y alucinaciones nocturnas')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      👤 Test Neuropsiquiátrico
+                    </button>
+                    <div className="border-t border-gray-200 my-1"></div>
+                    <div className="px-3 py-1 text-xs text-gray-500 font-medium">Tests Avanzados:</div>
+                    <button
+                      onClick={() => setNotes('Paciente deprimida con síntomas de ansiedad')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      👩 Test Género Femenino
+                    </button>
+                    <button
+                      onClick={() => setNotes('Consulta de psiquiatría por síntomas del estado de ánimo')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      🏥 Test Categoría Psiquiatría
+                    </button>
+                    <button
+                      onClick={() => setNotes('Evaluación neurológica por trastorno del movimiento')}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 rounded"
+                    >
+                      🧠 Test Categoría Neurología
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
